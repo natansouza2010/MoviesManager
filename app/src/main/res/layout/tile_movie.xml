@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/tilePessoa" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="10dp">
+    <TextView android:id="@+id/nameTv" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Name" android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/yearTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year" />
+
+    <TextView
+        android:id="@+id/studioTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Studio" />
+
+    <TextView
+        android:id="@+id/timeOfDurationTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time of Duration" />
+
+    <TextView
+        android:id="@+id/watchedTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Watched" />
+
+    <TextView
+        android:id="@+id/noteTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note" />
+
+    <TextView
+        android:id="@+id/genreTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genre" />
+</LinearLayout>
