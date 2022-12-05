@@ -18,6 +18,7 @@ import com.example.moviesmanager.model.Constant
 import com.example.moviesmanager.model.Constant.EXTRA_MOVIE
 import com.example.moviesmanager.model.Movie
 import com.example.moviesmanager.model.enums.Genres
+import com.example.moviesmanager.service.MovieService
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,16 +26,20 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val movieList: MutableList<Movie> = mutableListOf()
+    private var movieList: MutableList<Movie> = mutableListOf()
 
     private lateinit var movieAdapter: MovieAdapter
 
     private lateinit var carl: ActivityResultLauncher<Intent>
 
+    private val movieService: MovieService by lazy {
+        MovieService(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
-        fillMovieList()
+        movieList =  movieService.getMovies()
         movieAdapter = MovieAdapter(movieList, this)
         amb.recycleViewMovies.adapter = movieAdapter
         amb.recycleViewMovies.layoutManager = LinearLayoutManager(applicationContext)
@@ -54,6 +59,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     else {
                         movieList.add(_movie)
+                        movieService.insertMovie(_movie)
+
                     }
                     movieAdapter.notifyDataSetChanged()
                 }
@@ -61,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 delMovie?.let{
                         _movie ->
                     movieList.remove(_movie);
+                    movieService.removeMovie(_movie.id)
                     movieAdapter.notifyDataSetChanged()
                 }
 
@@ -116,23 +124,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun fillMovieList() {
-        for (i in 1..10) {
-            movieList.add(
-                Movie(
-                    id = i,
-                    name = "Nome $i",
-                    year = i,
-                    studio = "Studio $i" ,
-                    timeOfDuration= i,
-                    hasWatched = true,
-                    note = i,
-                    genre = Genres.Romance,
-                )
-            )
-        }
 
-        }
 
 
 }
